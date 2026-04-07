@@ -6,8 +6,11 @@ create table if not exists profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   name text,
   email text,
+  cnpj char(14) unique
+check (cnpj ~ '^[0-9]{14}$'),
   created_at timestamp with time zone default now()
 );
+
 
 -- CATEGORIES
 create table if not exists categories (
